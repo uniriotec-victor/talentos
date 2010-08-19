@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Formulário Talentos</title>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/styles.css"/>
+    </head>
+    <body>
+        {{ codigo }}
+        <div id="corpo">
+            {% block topNavPri %}
+            <div id="cabecalho">
+                {% if erro %}<h2 class="erro">{{erro}}</h2>
+                {% else %}<h1>Formulário Talentos</h1>{% endif %}
+            </div>
+            {% endblock %}
+            {% block content %}
+                {% if form %}
+                <div id="formulario">
+                <form name="informacoes" id="informacoes" action="{% url talentos.informacoes.views.executar_formulario_conhecimento %}" method="post">
+                    <p>Este formulário tem como objetivo analisar seus conhecimentos em tecnologia.
+                    Marque apenas uma opção em cada item de acordo com seu nível de entendimento dos mesmos.
+                    No campo Treinamentos liste cursos da área de tecnologia que você tenha feito.
+                    No campo Conhecimentos abertos cite qualquer conhecimento que você possuir e achar relevante</p>
+                    <br />
+                    <table>
+                        {{ form|safe }}
+                    </table>
+                    <p style="text-align: center;"><input type="submit" value="Enviar" /></p>
+                </form>
+                </div>
+                {% endif %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
